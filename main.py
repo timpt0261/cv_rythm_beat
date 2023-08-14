@@ -38,10 +38,10 @@ if __name__ == '__main__':
                 data.extend([lm[0], height - lm[1], lm[2]])
             sock.sendto(str.encode(str(data)), serverAdressPort)
                 
-        else:
+        # else:
             
-            msg = "No hands detected"
-            sock.sendto(str.encode(str(msg)), serverAdressPort)
+        #     msg = "No hands detected"
+        #     sock.sendto(str.encode(str(msg)), serverAdressPort)
         
         
         cv2.imshow("Image",img)
