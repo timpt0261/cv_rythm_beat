@@ -1,10 +1,10 @@
+using UnityEngine;
 using System;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
-
 using System.Threading;
-using UnityEngine;
+
 
 public class UDPReceive : MonoBehaviour
 {
@@ -15,12 +15,24 @@ public class UDPReceive : MonoBehaviour
     public bool printToConsole = false;
     public string data;
 
+
     public void Start()
     {
+        receiveThread = new Thread(
+            new ThreadStart(ReceiceData));
+        receiveThread.IsBackground = true;
+        receiveThread.Start();
+       
+
+    }
+
+    private void ReceiceData() 
+    {
         client = new UdpClient(port);
-        while (startReceiving) 
+        while (startReceiving)
         {
-            try{
+            try
+            {
                 IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
                 byte[] dataByte = client.Receive(ref anyIP);
                 data = Encoding.UTF8.GetString(dataByte);
@@ -28,7 +40,8 @@ public class UDPReceive : MonoBehaviour
                 if (printToConsole) { print(data); }
 
             }
-            catch(Exception err) {
+            catch (Exception err)
+            {
                 print(err.ToString());
             }
         }
