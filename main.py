@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     # Communications
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    serverAdressPort = ('127.0.0.1',8080)
+    serverAdressPort = ('127.0.0.1',5052)
     
     while True:
         # Get the frame from webcam
@@ -30,8 +30,6 @@ if __name__ == '__main__':
         if hands: 
             # Get the first hand_01 detected
             hand_01 = hands[0]
-        
-            
             # Get the landmark list
             lmList = hand_01['lmList']
             for lm in  lmList:

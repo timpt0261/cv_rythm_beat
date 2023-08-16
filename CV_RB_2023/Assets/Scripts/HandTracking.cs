@@ -11,18 +11,17 @@ public class HandTracking : MonoBehaviour
     void Update()
     {
         string data = udpReceive.data;
-        
+        if (data == "None") { return; }
+
+
         data = data.Remove(0, 1);
         data = data.Remove(data.Length-1, 1);
-        if (data == "None") { return;} 
     
         string[] points = data.Split(',');
-        int num_points = 21;
-        if (points.Length != 64) { num_points = 42; }
-        
-        for (int i = 0; i < num_points; i++) 
+
+        for (int i = 0; i < 42; i++) 
         {
-            float x = float.Parse(points[i * 3])/100;
+            float x = 3 - float.Parse(points[i * 3])/100;
             float y = float.Parse(points[i * 3 + 1])/100;
             float z = float.Parse(points[i * 3 + 2])/100;
 
