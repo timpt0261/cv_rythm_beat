@@ -22,7 +22,7 @@ public class Collision_Detector : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") && active == false) 
         {
-            Debug.Log("Player is Colliding with Detector");
+            Debug.Log("Player is Colliding with Detector : " + detector_ID);
             active = true;
             timeHolding = 0;
 
@@ -44,7 +44,7 @@ public class Collision_Detector : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && active == true)
         {
             active = false;
-            Debug.Log("Player holded on Deteector:"+ detector_ID +  " for " + timeHolding);
+            Debug.Log("Player holded on Detector:"+ detector_ID +  " for " + timeHolding);
 
         }
     }
