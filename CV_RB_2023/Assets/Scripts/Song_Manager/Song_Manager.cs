@@ -1,44 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Melanchall.DryWetMidi.Core;
+using Melanchall.DryWetMidi.Interaction;
+using System.IO;
+using UnityEngine.Networking;
+using System;
 
 public class Song_Manager : MonoBehaviour
 {
+    public static Song_Manager Instance;
+    public AudioSource audioSource;
+    public float songDelayInSeconds;
 
-    //the current position of the song (in seconds)
-    float songPosition;
+    public double marginOfError; // in seconds
+    public int inputDelayInMilliseconds;
 
-    //the current position of the song (in beats)
-    float songPosInBeats;
+    public string fileLocation;
+    public float noteTime;
+    public float noteSpawnZ;
+    public float noteTapZ;
 
-    //the duration of a beat
-    float secPerBeat;
-
-    //how much time (in seconds) has passed since the song started
-    float dsptimesong;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public float noteDespawnZ
     {
-        secPerBeat = 60f / bpm;
-
-        //record the time when the song starts
-        dsptimesong = (float)AudioSettings.dspTime;
-
-        //start the song
-        GetComponent<AudioSource>().Play();
-
+        get {
+            return noteTapZ - (noteSpawnZ - noteTapZ);
+        
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public static MidiFile midiFile;
+
+    private void Start()
     {
-        //calculate the position in seconds
-        songPosition = (float)(AudioSettings.dspTime - dsptimesong);
+        Instance = this;
+        if (Application.streamingAssetsPath.StartsWith("https://"))
+        {
+            StartCoroutine(ReadFromWebsite());
+        }
+        else 
+        {
+           ReadFromFile();
+        }
 
-        //calculate the position in beats
-        songPosInBeats = songPosition / secPerBeat;
+        
+    }
 
+    private IEnumerator ReadFromWebsite()
+    {
+        using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + "/" + fileLocation)) 
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(www.error);
+            }
+            else 
+            {
+                byte[] results = www.downloadHandler.data;
+                using (var stream = new MemoryStream(results))
+                {
+                    midiFile = MidiFile.Read(stream);
+                }
+            }
+        }
+    }
+
+    private void ReadFromFile()
+    {
+        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
+    }
+
+    public void GetDataFromMidi() 
+    {
+        var notes = midiFile.GetNotes();
+        var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
+        notes.CopyTo(array, 0);
+
+        // Further Manipulation later
+        Invoke(nameof(StartSong), songDelayInSeconds);
+        
+    }
+
+    public void  StartSong()
+    {
+        audioSource.Play();
+    }
+
+    public static double GetAudioSourceTime() 
+    {
+        return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
+    }
+
+    private void Update()
+    {
+        
     }
 }
