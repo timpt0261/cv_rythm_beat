@@ -7,6 +7,7 @@ public class Lane : MonoBehaviour
 {
 	public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 	public bool detectorIsActive;
+	public Collision_Detector collisionDetector;
 	public GameObject notePrefab;
 	List<Note> notes = new List<Note>();
 	public List<double> timeStamps = new List<double>();
@@ -17,7 +18,7 @@ public class Lane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+		collisionDetector = GetComponent<Collision_Detector>();
     }
 	
 	public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -52,7 +53,7 @@ public class Lane : MonoBehaviour
 			double marginOfError = Song_Manager.Instance.marginOfError;
 			double audioTime = Song_Manager.GetAudioSourceTime() - (Song_Manager.Instance.inputDelayInMilliseconds / 1000.0);
 			
-			if (detectorIsActive)
+			if (collisionDetector.active)
 			{
 				if (Mathf.Abs((float)audioTime - (float)timeStamp) < marginOfError)
 				{
