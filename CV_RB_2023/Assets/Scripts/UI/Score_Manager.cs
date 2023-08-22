@@ -20,20 +20,20 @@ public class Score_Manager : MonoBehaviour
 	public static void Hit()
 	{
 		comboScore += 1;
-		// Instance.hitSFX.Play();
+		Instance.hitSFX.Play();
 		// play hit sfx
 	}
 	
 	public static void Miss()
 	{
 		comboScore = 0;
-		// Instance.missSFX.Play();
+		 Instance.missSFX.Play();
 		// play miss sfx
 	}
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = comboScore.ToString();
+        scoreText.text = "Score : " + comboScore.ToString();
     }
 }
