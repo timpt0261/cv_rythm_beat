@@ -62,6 +62,7 @@ public class Song_Manager : MonoBehaviour
                 using (var stream = new MemoryStream(results))
                 {
                     midiFile = MidiFile.Read(stream);
+                    GetDataFromMidi();
                 }
             }
         }
@@ -70,6 +71,8 @@ public class Song_Manager : MonoBehaviour
     private void ReadFromFile()
     {
         midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
+        GetDataFromMidi();
+        Debug.Log(midiFile);
     }
 
     public void GetDataFromMidi() 
@@ -77,6 +80,7 @@ public class Song_Manager : MonoBehaviour
         var notes = midiFile.GetNotes();
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         notes.CopyTo(array, 0);
+        Debug.Log(notes);
 
 		foreach (var lane in lanes) lane.SetTimeStamps(array);
 		
@@ -96,6 +100,7 @@ public class Song_Manager : MonoBehaviour
 
     private void Update()
     {
+        
         
     }
 }
