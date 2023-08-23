@@ -1,23 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Melanchall.DryWetMidi.MusicTheory;
+using Melanchall.DryWetMidi.Interaction;
 public class Lane : MonoBehaviour
 {
 	public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
-	public KeyCode input;
+	public bool detectorIsActive;
+	public Collision_Detector detector;
 	public GameObject notePrefab;
 	List<Note> notes = new List<Note>();
 	public List<double> timeStamps = new List<double>();
 	
 	int spawnIndex = 0;
 	int inputIndex = 0;
-	
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 	
 	public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
 	{
@@ -34,6 +30,8 @@ public class Lane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		detectorIsActive = detector.active;
+
         if (spawnIndex < timeStamps.Count)
 		{
 			if (Song_Manager.GetAudioSourceTime() >= timeStamps[spawnIndex] - Song_Manager.Instance.noteTime)
@@ -51,7 +49,7 @@ public class Lane : MonoBehaviour
 			double marginOfError = Song_Manager.Instance.marginOfError;
 			double audioTime = Song_Manager.GetAudioSourceTime() - (Song_Manager.Instance.inputDelayInMilliseconds / 1000.0);
 			
-			if (Input.GetKeyDown(input))
+			if (detector.active)
 			{
 				if (Mathf.Abs((float)audioTime - (float)timeStamp) < marginOfError)
 				{

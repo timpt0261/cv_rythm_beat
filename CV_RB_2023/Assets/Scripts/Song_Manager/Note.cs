@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
+
     double timeInstantiated;
     public float assignedTime;
 
