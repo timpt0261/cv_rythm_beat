@@ -55,7 +55,8 @@ public class Lane : MonoBehaviour
 				{
 					Hit();
 					print($"Hit on {inputIndex} note");
-					Destroy(notes[inputIndex].gameObject);
+					//Destroy(notes[inputIndex].gameObject);
+					notes[inputIndex].gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
 					inputIndex++;
 				}
 				else
