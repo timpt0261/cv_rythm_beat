@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Melanchall.DryWetMidi.Core;
+using Melanchall.DryWetMidi.Interaction;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class ScoreManager : MonoBehaviour
 	public AudioSource hitSFX;
 	public AudioSource missSFX;
 	public TMPro.TextMeshPro scoreText;
-	static int comboScore;
+	public static int comboScore;
+	//public static MidiFile midiFile;
+	public static int maxScore;
 	
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,7 @@ public class ScoreManager : MonoBehaviour
 	public static void Hit()
 	{
 		comboScore += 1;
+		maxScore += 1;
 		Instance.hitSFX.Play();
 		// play hit sfx
 	}
@@ -27,6 +32,7 @@ public class ScoreManager : MonoBehaviour
 	public static void Miss()
 	{
 		//comboScore = 0;
+		maxScore += 1;
 		Instance.missSFX.Play();
 		// play miss sfx
 	}
@@ -34,6 +40,9 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score : " + comboScore.ToString();
+        scoreText.text = "Score : " + comboScore.ToString() + "/" + maxScore;
+		//scorebar.score = comboScore;
+		//scorebar.maxScore = maxScore;
+		
     }
 }
