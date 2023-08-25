@@ -12,10 +12,6 @@ public class CalculateHandBounds : MonoBehaviour
     [SerializeField]
     private float size_estimate = 0.1f;
 
-    [Range(0.1f, 2.0f)]
-    [SerializeField]
-    private float center_estimate = 0.1f;
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,21 +25,14 @@ public class CalculateHandBounds : MonoBehaviour
         Transform[] bounds = GetBounds(points);
 
         Vector3 size = new Vector3(
-            Mathf.Abs(bounds[3].position.x - bounds[2].position.x) * size_estimate,
-            Mathf.Abs(bounds[0].position.y - bounds[1].position.y) * size_estimate,
-            Mathf.Abs(bounds[5].position.z - bounds[4].position.z) * size_estimate
+            Mathf.Abs(bounds[3].position.x - bounds[2].position.x) + size_estimate,
+            Mathf.Abs(bounds[0].position.y - bounds[1].position.y) + size_estimate,
+            Mathf.Abs(bounds[5].position.z - bounds[4].position.z) + size_estimate
         );
 
-        // Calculate the point closest to the middle
-        /*Vector3 center = new Vector3(
-            ((bounds[3].position.x + bounds[2].position.x) / 2) * Mathf.Log(center_estimate),
-            ((bounds[0].position.y + bounds[1].position.y) / 2) * Mathf.Log(center_estimate),
-            ((bounds[5].position.z + bounds[4].position.z) / 2) * Mathf.Log(center_estimate)
-            );*/
-        
+
         // Apply the size and center adjustments
         boxCollider.size = size;
-        //boxCollider.center = center;
 
         collider_transform.position = points[9].position;
         collider_transform.rotation = points[9].rotation;
