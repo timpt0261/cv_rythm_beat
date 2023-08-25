@@ -35,15 +35,15 @@ public class CalculateHandBounds : MonoBehaviour
         );
 
         // Calculate the point closest to the middle
-        Vector3 center = new Vector3(
-            ((bounds[3].position.x + bounds[2].position.x) / 2) * center_estimate,
-            ((bounds[0].position.y + bounds[1].position.y) / 2) * center_estimate,
-            ((bounds[5].position.z + bounds[4].position.z) / 2) * center_estimate
-            );
+        /*Vector3 center = new Vector3(
+            ((bounds[3].position.x + bounds[2].position.x) / 2) * Mathf.Log(center_estimate),
+            ((bounds[0].position.y + bounds[1].position.y) / 2) * Mathf.Log(center_estimate),
+            ((bounds[5].position.z + bounds[4].position.z) / 2) * Mathf.Log(center_estimate)
+            );*/
         
         // Apply the size and center adjustments
         boxCollider.size = size;
-        boxCollider.center = center;
+        //boxCollider.center = center;
 
         collider_transform.position = points[9].position;
         collider_transform.rotation = points[9].rotation;

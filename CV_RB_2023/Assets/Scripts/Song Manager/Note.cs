@@ -11,15 +11,16 @@ public class Note : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeInstantiated = Song_Manager.GetAudioSourceTime();
+        timeInstantiated = SongManager.GetAudioSourceTime();
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        double timesinceInstantiated = Song_Manager.GetAudioSourceTime() - timeInstantiated;
-        float t = (float)(timesinceInstantiated / (Song_Manager.Instance.noteTime * 2));
+        double timesinceInstantiated = SongManager.GetAudioSourceTime() - timeInstantiated;
+        float t = (float)(timesinceInstantiated / (SongManager.Instance.noteTime * 2));
 
         if (t > 1)
         {
@@ -27,7 +28,7 @@ public class Note : MonoBehaviour
         }
         else 
         {
-            transform.localPosition = Vector3.Lerp(Vector3.forward * Song_Manager.Instance.noteSpawnZ, Vector3.forward * Song_Manager.Instance.noteDespawnZ, t);
+            transform.localPosition = Vector3.Lerp(Vector3.forward * SongManager.Instance.noteSpawnZ, Vector3.forward * SongManager.Instance.noteDespawnZ, t);
         }
     }
 }

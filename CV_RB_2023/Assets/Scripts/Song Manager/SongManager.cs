@@ -7,12 +7,12 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 
-public class Song_Manager : MonoBehaviour
+public class SongManager : MonoBehaviour
 {
-    public static Song_Manager Instance;
+    public static SongManager Instance;
     public AudioSource audioSource;
-    public float songDelayInSeconds;
 	public Lane[] lanes;
+    public float songDelayInSeconds;
     public double marginOfError; // in seconds
     public int inputDelayInMilliseconds;
 

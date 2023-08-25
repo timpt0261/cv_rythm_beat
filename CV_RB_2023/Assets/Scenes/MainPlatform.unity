@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 44d93012aa89e4c4ead4ab26f815f97a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4021,7 +4021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792381372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.401924, y: 3.5862007, z: 11.300002}
+  m_LocalPosition: {x: 7.901924, y: 3.5862007, z: 9.281441}
   m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 1.69}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5029,13 +5029,13 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.8301887, g: 0.7322891, b: 0.7336488, a: 0}
+  m_BackGroundColor: {r: 0.8679245, g: 0.8472971, b: 0.80651474, a: 0}
   m_projectionMatrixMode: 1
-  m_GateFitMode: 2
+  m_GateFitMode: 3
   m_FOVAxisMode: 1
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 35.1, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 19.7
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -5044,7 +5044,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 35.98714
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -5070,7 +5070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.81, z: -8.86}
+  m_LocalPosition: {x: 0, y: 1.81, z: -16.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5782,7 +5782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090205251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.401924, y: 3.5862007, z: 11.300002}
+  m_LocalPosition: {x: 4.401924, y: 3.586201, z: 9.281441}
   m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 1.69}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5993,7 +5993,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127245896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.401924, y: 1.0662006, z: 11.300002}
+  m_LocalPosition: {x: 4.401924, y: 1.2062006, z: 9.281441}
   m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 1.69}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9616,23 +9616,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800984778}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f983171d2f5daef459766aab06f4424c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1800984781}
-  songDelayInSeconds: 0
   lanes:
   - {fileID: 1090205254}
   - {fileID: 1127245898}
   - {fileID: 792381374}
   - {fileID: 2049878991}
+  songDelayInSeconds: 10
   marginOfError: 0.07
   inputDelayInMilliseconds: 3
   fileLocation: persona4op.mid
   noteTime: 1
-  noteSpawnZ: 7
+  noteSpawnZ: 10
   noteTapZ: -3
 --- !u!82 &1800984781
 AudioSource:
@@ -11401,7 +11401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049878989}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.401924, y: 1.0662006, z: 11.3}
+  m_LocalPosition: {x: 7.901924, y: 1.2062006, z: 9.281441}
   m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 1.69}
   m_ConstrainProportionsScale: 0
   m_Children: []

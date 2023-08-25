@@ -7,7 +7,7 @@ public class Lane : MonoBehaviour
 {
 	public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 	public bool detectorIsActive;
-	public Collision_Detector detector;
+	public HandCollisionDetector detector;
 	public GameObject notePrefab;
 	List<Note> notes = new List<Note>();
 	public List<double> timeStamps = new List<double>();
@@ -21,7 +21,7 @@ public class Lane : MonoBehaviour
 		{
 			if (note.NoteName == noteRestriction)
 			{
-				var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan> (note.Time, Song_Manager.midiFile.GetTempoMap());
+				var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan> (note.Time, SongManager.midiFile.GetTempoMap());
 				timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
 			}
 		}
@@ -34,7 +34,7 @@ public class Lane : MonoBehaviour
 
         if (spawnIndex < timeStamps.Count)
 		{
-			if (Song_Manager.GetAudioSourceTime() >= timeStamps[spawnIndex] - Song_Manager.Instance.noteTime)
+			if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
 			{
 				var note = Instantiate(notePrefab, transform);
 				notes.Add(note.GetComponent<Note>());
@@ -46,8 +46,8 @@ public class Lane : MonoBehaviour
 		if (inputIndex < timeStamps.Count)
 		{
 			double timeStamp = timeStamps[inputIndex];
-			double marginOfError = Song_Manager.Instance.marginOfError;
-			double audioTime = Song_Manager.GetAudioSourceTime() - (Song_Manager.Instance.inputDelayInMilliseconds / 1000.0);
+			double marginOfError = SongManager.Instance.marginOfError;
+			double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
 			
 			if (detector.active)
 			{
@@ -75,11 +75,11 @@ public class Lane : MonoBehaviour
 	
 	private void Hit()
 	{
-		Score_Manager.Hit();
+		ScoreManager.Hit();
 	}
 	
 	private void Miss()
 	{
-		Score_Manager.Miss();
+		ScoreManager.Miss();
 	}
 }

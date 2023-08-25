@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Score_Manager : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
-	public static Score_Manager Instance;
+	public static ScoreManager Instance;
 	public AudioSource hitSFX;
 	public AudioSource missSFX;
 	public TMPro.TextMeshPro scoreText;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collision_Detector : MonoBehaviour
+public class HandCollisionDetector : MonoBehaviour
 {
     public bool active = false;
     [SerializeField] 
