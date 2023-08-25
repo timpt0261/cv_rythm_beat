@@ -19,8 +19,8 @@ public class scorebar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		score = (float)Score_Manager.comboScore;
-		maxScore = (float)Score_Manager.maxScore;
+		score = (float)ScoreManager.comboScore;
+		maxScore = (float)ScoreManager.maxScore;
 		if (maxScore != 0)
 		{
 			scoreBar.fillAmount = score / maxScore;
