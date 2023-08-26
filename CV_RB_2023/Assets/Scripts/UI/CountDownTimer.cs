@@ -8,33 +8,33 @@ public class CountDownTimer : MonoBehaviour
     public SongManager songManager;
     public AudioSource countdownSFX;
     float timeRemaining;
-    bool timerIsRunnig = false;
+    bool timerIsRunning = false;
 
     // Start is called before the first frame update
     void Start()
     {
         timeRemaining = songManager.songDelayInSeconds + 1f;
-        timerIsRunnig = true;
-        timerUI.text = ((int)timeRemaining ).ToString();
+        timerIsRunning = true;
+        timerUI.text = Mathf.FloorToInt(timeRemaining % 60).ToString();
         countdownSFX.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timerIsRunnig) 
+        if (timerIsRunning) 
         {
             if (timeRemaining >= 0)
             {
                 timeRemaining -= Time.deltaTime;
                 if (timeRemaining < 1) { timerUI.text = "GO!"; return; }
-                timerUI.text = ((int)timeRemaining).ToString();
+                timerUI.text = Mathf.FloorToInt(timeRemaining % 60).ToString();
             }
             else
             {
                 timerUI.text = "";
                 timeRemaining = 0;
-                timerIsRunnig = false;
+                timerIsRunning = false;
             }
 
         }
