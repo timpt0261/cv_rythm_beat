@@ -33,8 +33,9 @@ public class ScoreManager : MonoBehaviour
 	{
 		//comboScore = 0;
 		maxScore += 1;
-		Instance.missSFX.Play();
 		// play miss sfx
+		Instance.missSFX.Play();
+		
 	}
 
     // Update is called once per frame

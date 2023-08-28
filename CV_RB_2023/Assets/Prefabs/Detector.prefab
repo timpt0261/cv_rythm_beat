@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4164679478077197080}
   - component: {fileID: 4164679478077197083}
   - component: {fileID: 4164679478077197086}
+  - component: {fileID: 7564213458470642501}
   m_Layer: 0
   m_Name: Detector
   m_TagString: Untagged
@@ -112,3 +113,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   detector_ID: 0
+--- !u!114 &7564213458470642501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4164679478077197093}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69754a57dd27f0468e06f91b44ab9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

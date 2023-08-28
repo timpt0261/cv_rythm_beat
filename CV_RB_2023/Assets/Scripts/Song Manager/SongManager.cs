@@ -5,6 +5,7 @@ using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
 using System.IO;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using System;
 
 public class SongManager : MonoBehaviour
@@ -30,7 +31,11 @@ public class SongManager : MonoBehaviour
     }
 
     public static MidiFile midiFile;
+    private bool levelStarted = false;
 
+    [SerializeField]
+    private ScoreManager scoreManger;
+    
     private void Start()
     {
         Instance = this;
@@ -100,7 +105,35 @@ public class SongManager : MonoBehaviour
 
     private void Update()
     {
-        
+        // Check if the audio source is playing and the song has started
+        if (audioSource.isPlaying && GetAudioSourceTime() >= songDelayInSeconds)
+        {
+            Debug.Log("Level is still ongoing.");
+        }
+        else
+        {
+            Debug.Log("Display Score Board");
+            DisplayScoreBoard();
+        }
+    }
+
+
+    private void DisplayScoreBoard()
+    {
+        // Create a SaveData instance and populate it with relevant information
+        string saveData =  ScoreManager.Instance.scoreText.text;
+
+        // Convert SaveData to JSON
+        string json = JsonUtility.ToJson(saveData);
+
+        // Save JSON to a file
+        File.WriteAllText("SaveData.json", json);
+
+        SceneManager.LoadScene("ScoreMenu");
+    }
+
+    private void SaveScoreInfo() 
+    {
         
     }
 }

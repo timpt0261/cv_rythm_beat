@@ -2653,27 +2653,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider_transform: {fileID: 627186354}
   points:
-  - {fileID: 33834414}
-  - {fileID: 120660034}
-  - {fileID: 2079130885}
-  - {fileID: 733531013}
-  - {fileID: 2101062085}
-  - {fileID: 1358269091}
-  - {fileID: 1420854970}
-  - {fileID: 1826046048}
-  - {fileID: 1060260387}
-  - {fileID: 1484494667}
-  - {fileID: 1593623673}
-  - {fileID: 183188385}
-  - {fileID: 925499552}
-  - {fileID: 1162377525}
-  - {fileID: 665742761}
-  - {fileID: 967874972}
-  - {fileID: 702249316}
-  - {fileID: 1499950190}
-  - {fileID: 1083949943}
-  - {fileID: 2077058766}
-  - {fileID: 786154209}
+  - {fileID: 421724443}
+  - {fileID: 1571979341}
+  - {fileID: 2135373501}
+  - {fileID: 1455066682}
+  - {fileID: 725707692}
+  - {fileID: 826419726}
+  - {fileID: 1274246838}
+  - {fileID: 1662107758}
+  - {fileID: 91289338}
+  - {fileID: 1413383694}
+  - {fileID: 2030402334}
+  - {fileID: 2080668170}
+  - {fileID: 884305401}
+  - {fileID: 637675875}
+  - {fileID: 1069506114}
+  - {fileID: 283379696}
+  - {fileID: 1280076115}
+  - {fileID: 201707549}
+  - {fileID: 712725519}
+  - {fileID: 1700007466}
+  - {fileID: 1198765036}
   size_estimate: 0.569
 --- !u!54 &627186356
 Rigidbody:
@@ -10260,6 +10260,7 @@ MonoBehaviour:
   noteTime: 1
   noteSpawnZ: 10
   noteTapZ: -5
+  scoreManger: {fileID: 134766141}
 --- !u!82 &1800984781
 AudioSource:
   m_ObjectHideFlags: 0
