@@ -2,6 +2,18 @@ import cv2
 import socket
 from cvzone.HandTrackingModule import HandDetector
 
+# for thumbs up detection
+import mediapipe as mp
+from mediapipe.tasks import python
+from mediapipe.tasks.python import vision
+
+# Create an GestureRecognizer object.
+base_options = python.BaseOptions(model_asset_path='gesture_recognizer.task')
+options = vision.GestureRecognizerOptions(base_options=base_options)
+recognizer = vision.GestureRecognizer.create_from_options(options)
+
+# if the ML model detects gesture with more than 40% probability we will consider it
+thumb_up_score_threshold = 0.4
 
 if __name__ == '__main__':
 
@@ -22,6 +34,15 @@ if __name__ == '__main__':
         # Get the frame from webcam
 
         success, img = cap.read()
+        img_has_thumb_up = 0
+
+        mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=img)
+        recognition_result = recognizer.recognize(mp_image)
+        if(len(recognition_result.gestures)>0 and len(recognition_result.gestures[0])>0):
+            top_gesture = recognition_result.gestures[0][0]
+            if(top_gesture.category_name=='Thumb_Up' and top_gesture.score>=thumb_up_score_threshold):
+                img_has_thumb_up = 1
+     
 
         # Hands
         hands, img = detector.findHands(img)
@@ -41,7 +62,8 @@ if __name__ == '__main__':
                 lmList = hand_02['lmList']
                 for lm in lmList:
                     data.extend([lm[0], height - lm[1], lm[2]])
-
+            data.append(img_has_thumb_up)
+            # print(str.encode(str(data)))
             sock.sendto(str.encode(str(data)), serverAdressPort)
         else:
 
