@@ -22,6 +22,9 @@ public class SongManager : MonoBehaviour
     public float noteSpawnZ;
     public float noteTapZ;
 
+    public ScoreManager scoreManager;
+    public Canvas scoreMenuCanvas;
+
     public float noteDespawnZ
     {
         get {
@@ -39,6 +42,7 @@ public class SongManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        scoreMenuCanvas.enabled = false;
         if (Application.streamingAssetsPath.StartsWith("https://"))
         {
             StartCoroutine(ReadFromWebsite());
@@ -103,6 +107,7 @@ public class SongManager : MonoBehaviour
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 
+
     private void Update()
     {
         // Check if the audio source is playing and the song has started
@@ -112,16 +117,8 @@ public class SongManager : MonoBehaviour
         }
         else
         {
-           DisplayScoreBoard();
+            scoreMenuCanvas.enabled = false;
         }
     }
 
-
-    private void DisplayScoreBoard()
-    {
-        // Create a SaveData instance and populate it with relevant information
-        string saveData =  ScoreManager.Instance.scoreText.text;
-
-        
-    }
 }
