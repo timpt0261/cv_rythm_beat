@@ -11,8 +11,7 @@ public class ScoreManager : MonoBehaviour
 	public AudioSource missSFX;
 	public TMPro.TextMeshPro scoreText;
 	public static int comboScore;
-	//public static MidiFile midiFile;
-	public static int maxScore;
+	public static int maxScore = 176;
 	
     // Start is called before the first frame update
     void Start()
@@ -24,15 +23,15 @@ public class ScoreManager : MonoBehaviour
 	public static void Hit()
 	{
 		comboScore += 1;
-		maxScore += 1;
+		//maxScore += 1;
 		Instance.hitSFX.Play();
 		// play hit sfx
 	}
 	
 	public static void Miss()
 	{
-		//comboScore = 0;
-		maxScore += 1;
+		// comboScore = 0;
+		// maxScore += 1;
 		// play miss sfx
 		Instance.missSFX.Play();
 		
@@ -42,8 +41,6 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score : " + comboScore.ToString() + "/" + maxScore;
-		//scorebar.score = comboScore;
-		//scorebar.maxScore = maxScore;
 		
     }
 }

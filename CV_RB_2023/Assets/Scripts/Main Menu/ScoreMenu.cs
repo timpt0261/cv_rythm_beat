@@ -10,6 +10,9 @@ public class ScoreMenu : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI score;
 
+    [SerializeField]
+    private ScoreManager ScoreManager;
+
     //Load Scene
     public void Play()
     {
@@ -23,15 +26,13 @@ public class ScoreMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void Start()
+    public void Menu() 
     {
-        // Read JSON from the file
-        string json = File.ReadAllText("SaveData.json");
+        SceneManager.LoadScene("MainMenu");
+    }
 
-        // Convert JSON back to SaveData
-        string saveData = JsonUtility.FromJson<string>(json);
-
-        // Use the loaded data as needed
-        score.text = saveData;
+    private void Update()
+    {
+        score.text = ScoreManager.scoreText.text;
     }
 }

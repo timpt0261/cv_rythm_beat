@@ -22,6 +22,9 @@ public class SongManager : MonoBehaviour
     public float noteSpawnZ;
     public float noteTapZ;
 
+    [SerializeField]
+    private Canvas scoreMenuCanvas;
+
     public float noteDespawnZ
     {
         get {
@@ -33,12 +36,11 @@ public class SongManager : MonoBehaviour
     public static MidiFile midiFile;
     // private bool levelStarted = false;
 
-    [SerializeField]
-    private ScoreManager scoreManger;
     
     private void Start()
     {
         Instance = this;
+        scoreMenuCanvas.enabled = false;
         if (Application.streamingAssetsPath.StartsWith("https://"))
         {
             StartCoroutine(ReadFromWebsite());
@@ -103,25 +105,18 @@ public class SongManager : MonoBehaviour
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 
+
     private void Update()
     {
+        Debug.Log(GetAudioSourceTime());
         // Check if the audio source is playing and the song has started
-        if (audioSource.isPlaying && GetAudioSourceTime() >= songDelayInSeconds)
+        if (GetAudioSourceTime() >= songDelayInSeconds) 
         {
-            Debug.Log("Level is still ongoing.");
+            if(!audioSource.isPlaying)
+                scoreMenuCanvas.enabled = true;
         }
-        else
-        {
-           DisplayScoreBoard();
-        }
-    }
-
-
-    private void DisplayScoreBoard()
-    {
-        // Create a SaveData instance and populate it with relevant information
-        string saveData =  ScoreManager.Instance.scoreText.text;
-
+        
         
     }
+
 }
