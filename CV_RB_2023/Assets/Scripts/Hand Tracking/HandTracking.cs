@@ -6,7 +6,7 @@ public class HandTracking : MonoBehaviour
 {
     public UDPReceive udpReceive;
     public GameObject[] handPoints;
-
+    public bool img_has_thumb_up = false;
     // Update is called once per frame
     void Update()
     {
@@ -32,7 +32,7 @@ public class HandTracking : MonoBehaviour
             handPoints[i/3].transform.localPosition = new Vector3(x, y, z);
         }
 
-        bool img_has_thumb_up = false;
+        
         if(int.Parse(points[points.Length - 1])==1){
             img_has_thumb_up = true;
         }
