@@ -38,11 +38,12 @@ if __name__ == '__main__':
 
         mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=img)
         recognition_result = recognizer.recognize(mp_image)
-        if(len(recognition_result.gestures)>0 and len(recognition_result.gestures[0])>0):
+        if (len(recognition_result.gestures) > 0 and len(recognition_result.gestures[0]) > 0):
+            print("A")
             top_gesture = recognition_result.gestures[0][0]
-            if(top_gesture.category_name=='Thumb_Up' and top_gesture.score>=thumb_up_score_threshold):
+            if (top_gesture.category_name == 'Thumb_Up' and top_gesture.score >= thumb_up_score_threshold):
+                print("B")
                 img_has_thumb_up = 1
-     
 
         # Hands
         hands, img = detector.findHands(img)
