@@ -22,8 +22,8 @@ public class SongManager : MonoBehaviour
     public float noteSpawnZ;
     public float noteTapZ;
 
-    public ScoreManager scoreManager;
-    public Canvas scoreMenuCanvas;
+    [SerializeField]
+    private Canvas scoreMenuCanvas;
 
     public float noteDespawnZ
     {
@@ -36,8 +36,6 @@ public class SongManager : MonoBehaviour
     public static MidiFile midiFile;
     // private bool levelStarted = false;
 
-    [SerializeField]
-    private ScoreManager scoreManger;
     
     private void Start()
     {
@@ -110,15 +108,15 @@ public class SongManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(GetAudioSourceTime());
         // Check if the audio source is playing and the song has started
-        if (audioSource.isPlaying && GetAudioSourceTime() >= songDelayInSeconds)
+        if (GetAudioSourceTime() >= songDelayInSeconds) 
         {
-            Debug.Log("Level is still ongoing.");
+            if(!audioSource.isPlaying)
+                scoreMenuCanvas.enabled = true;
         }
-        else
-        {
-            scoreMenuCanvas.enabled = false;
-        }
+        
+        
     }
 
 }

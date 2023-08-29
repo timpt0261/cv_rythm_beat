@@ -26,8 +26,13 @@ public class ScoreMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void Menu() 
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     private void Update()
     {
-        score.text = "Score: " +  ScoreManager.scoreText.text;
+        score.text = ScoreManager.scoreText.text;
     }
 }

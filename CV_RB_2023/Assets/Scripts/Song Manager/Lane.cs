@@ -50,7 +50,19 @@ public class Lane : MonoBehaviour
 			double marginOfError = SongManager.Instance.marginOfError;
 			double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
 
-			if (detector.active)
+			var check = false;
+
+			if (detector != null)
+				check = detector.active;
+			else if (tracker != null)
+				check = tracker.img_has_thumb_up;
+			else {
+				Debug.LogError("Must have a detector or a tracker!");
+				return;
+
+			}
+
+			if (check)
 			{
 				if (Mathf.Abs((float)audioTime - (float)timeStamp) < marginOfError)
 				{
@@ -59,20 +71,10 @@ public class Lane : MonoBehaviour
 				}
 				else
 				{
-					print($"Hit inaccurate on {inputIndex} note with {Mathf.Abs((float)audioTime - (float)timeStamp)} delay");
+					//print($"Hit inaccurate on {inputIndex} note with {Mathf.Abs((float)audioTime - (float)timeStamp)} delay");
 				}
 			}
-			else if (tracker.img_has_thumb_up) 
-			{
-				if (Mathf.Abs((float)audioTime - (float)timeStamp) < marginOfError)
-				{
-					HandleHit();
-				}
-				else
-				{
-					print($"Hit inaccurate on {inputIndex} note with {Mathf.Abs((float)audioTime - (float)timeStamp)} delay");
-				}
-			}
+			
 
 			if (timeStamp + marginOfError <= audioTime)
 			{
@@ -93,6 +95,7 @@ public class Lane : MonoBehaviour
 
 	private void HandleMiss()
 	{
+		
 		Miss();
         print($"Missed {inputIndex} note");
         notes[inputIndex].gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
