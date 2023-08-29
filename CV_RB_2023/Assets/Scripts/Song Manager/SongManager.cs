@@ -31,7 +31,7 @@ public class SongManager : MonoBehaviour
     }
 
     public static MidiFile midiFile;
-    private bool levelStarted = false;
+    // private bool levelStarted = false;
 
     [SerializeField]
     private ScoreManager scoreManger;
@@ -112,8 +112,7 @@ public class SongManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Display Score Board");
-            DisplayScoreBoard();
+           DisplayScoreBoard();
         }
     }
 
@@ -123,17 +122,6 @@ public class SongManager : MonoBehaviour
         // Create a SaveData instance and populate it with relevant information
         string saveData =  ScoreManager.Instance.scoreText.text;
 
-        // Convert SaveData to JSON
-        string json = JsonUtility.ToJson(saveData);
-
-        // Save JSON to a file
-        File.WriteAllText("SaveData.json", json);
-
-        SceneManager.LoadScene("ScoreMenu");
-    }
-
-    private void SaveScoreInfo() 
-    {
         
     }
 }
