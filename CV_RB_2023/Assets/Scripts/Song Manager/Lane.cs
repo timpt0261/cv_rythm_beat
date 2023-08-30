@@ -28,11 +28,17 @@ public class Lane : MonoBehaviour
 		}
 	}
 
+    private void Start()
+    {
+		Debug.Log(this.name + " Hand Collison Detector is  null : " + (detector == null).ToString());
+		Debug.Log(this.name + " Hand Tracker is  null : " + (tracker == null).ToString());
+		
+
+	}
+
     // Update is called once per frame
     void Update()
     {
-		detectorIsActive = detector.active;
-
         if (spawnIndex < timeStamps.Count)
 		{
 			if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
@@ -52,10 +58,17 @@ public class Lane : MonoBehaviour
 
 			var check = false;
 
-			if (detector != null)
+			if (detector)
+			{
 				check = detector.active;
-			else if (tracker != null)
+				Debug.Log("Set to detector for " + this.name);
+
+			}
+			else if (tracker) 
+			{
 				check = tracker.img_has_thumb_up;
+				Debug.Log("Set to tracker for " + this.name);
+			}
 			else {
 				Debug.LogError("Must have a detector or a tracker!");
 				return;
